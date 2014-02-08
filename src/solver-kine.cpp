@@ -478,7 +478,9 @@ namespace dynamicgraph
       void SolverKine::
       getDecomposition(const int & i)
       {
-	using namespace soth;
+        if(i < 0 || i > hsolver->nbStages())
+          return;
+        using namespace soth;
 	std::cout << "M"<<i<<" = " << (MATLAB) hsolver -> stage(i).getM() << std::endl;
 	std::cout << "L"<<i<<" = " << (MATLAB)(MatrixXd) (hsolver -> stage(i).getLtri()) << std::endl;
       }
