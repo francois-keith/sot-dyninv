@@ -116,12 +116,7 @@ namespace dynamicgraph {
 
 	/*! @} */
 
-	dg::SignalBase<int>* tatata;
-
-	int titit;
 	typedef std::list< const dg::SignalBase<int>* > TaskDependancyList_t;
-
-	int totol;
 
 	/*! \brief Return the signal to be added/removed from the dependancy
 	 * list of the control signal. */
