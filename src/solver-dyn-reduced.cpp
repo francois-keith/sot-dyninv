@@ -200,8 +200,11 @@ namespace dynamicgraph
 	addCommand("debugOnce",
 		   makeCommandVoid0(*this,&SolverDynReduced::debugOnce,
 				    docCommandVoid0("open trace-file for next iteration of the solver.")));
+        addCommand("getTaskList",
+                   new dynamicgraph::command::Getter< SolverDynReduced, std::string>
+		   (*this, &stack_t::getTaskList,"get the task list"));
 
-	ADD_COMMANDS_FOR_THE_STACK;
+        ADD_COMMANDS_FOR_THE_STACK;
       }
 
       /* --- COMMANDS ---------------------------------------------------------- */
