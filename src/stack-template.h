@@ -35,6 +35,7 @@
 /* --------------------------------------------------------------------- */
 
 #include <sot-dyninv/signal-helper.h>
+#include <boost/interprocess/sync/interprocess_mutex.hpp>
 
 namespace dynamicgraph {
   namespace sot {
@@ -60,6 +61,8 @@ namespace dynamicgraph {
 
 	/*! \brief Number of joints to be used to compute the control law. */
 	int nbDofs;
+
+	boost::interprocess::interprocess_mutex mutex_;
 
       public:
 

@@ -308,6 +308,7 @@ namespace dynamicgraph
       ml::Vector& SolverKine::
       controlSOUT_function( ml::Vector &mlcontrol, int t )
       {
+	while(! mutex_.try_lock() ){}
 	sotDEBUG(15) << " # In time = " << t << std::endl;
 
 	refreshTaskTime( t );
@@ -452,6 +453,7 @@ namespace dynamicgraph
 	  }
 
 	sotDEBUG(1) << "control = " << mlcontrol << std::endl;
+	mutex_.unlock();
 	return mlcontrol;
       }
 

@@ -53,18 +53,22 @@ namespace dynamicgraph
     void Stack<TaskGeneric>::
     push( TaskGeneric& task )
     {
+      while(! mutex_.try_lock() ){}
       stack.push_back( &task );
       addDependancy( getTaskDependancyList( task ) );
       resetReady();
+      mutex_.unlock();
     }
     template< typename TaskGeneric >
     TaskGeneric& Stack<TaskGeneric>::
     pop( void )
     {
       TaskGeneric* res = stack.back();
+      while(! mutex_.try_lock() ){}
       removeDependancy( getTaskDependancyList( *res ) );
       stack.pop_back();
       resetReady();
+      mutex_.unlock();
       return *res;
     }
     template< typename TaskGeneric >
@@ -96,9 +100,11 @@ namespace dynamicgraph
 	}
       if(! find ){ return; }
 
+      while(! mutex_.try_lock() ){}
       stack.erase( it );
       removeDependancy( getTaskDependancyList( key ) );
       resetReady();
+      mutex_.unlock();
     }
 
     template< typename TaskGeneric >
@@ -116,9 +122,12 @@ namespace dynamicgraph
 
       StackIterator_t pos=it; pos--;
       TaskGeneric * task = *it;
+
+      while(! mutex_.try_lock() ){}
       stack.erase( it );
       stack.insert( pos,task );
       resetReady();
+      mutex_.unlock();
     }
     template< typename TaskGeneric >
     void Stack<TaskGeneric>::
@@ -139,6 +148,7 @@ namespace dynamicgraph
       if( stack.end()==pos ){ return; }
 
       TaskGeneric* task=*it;
+      while(! mutex_.try_lock() ){}
       stack.erase( it );
       // the task was the second to last one
       if( stack.end()==pos ){ stack.push_back(task); }
@@ -147,6 +157,7 @@ namespace dynamicgraph
 	  stack.insert( pos,task );
 	}
       resetReady();
+      mutex_.unlock();
     }
 
     template< typename TaskGeneric >
