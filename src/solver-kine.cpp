@@ -40,7 +40,9 @@ solver_op_space__INIT solver_op_space_initiator;
 #include <soth/Algebra.hpp>
 #include <Eigen/QR>
 #include <sot-dyninv/mal-to-eigen.h>
-#include <sys/time.h>
+#ifndef WIN32
+# include <sys/time.h>
+#endif // WIN32
 
 namespace soth
 {

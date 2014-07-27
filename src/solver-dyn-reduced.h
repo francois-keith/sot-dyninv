@@ -21,7 +21,7 @@
 /* --------------------------------------------------------------------- */
 
 #if defined (WIN32)
-#  if defined (solver_op_space_EXPORTS)
+#  if defined (solver_dyn_reduced_EXPORTS)
 #    define SOTSOLVERDYNREDUCED_EXPORT __declspec(dllexport)
 #  else
 #    define SOTSOLVERDYNREDUCED_EXPORT __declspec(dllimport)
