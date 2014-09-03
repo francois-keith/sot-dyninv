@@ -136,7 +136,8 @@ namespace dynamicgraph {
 	/*! \brief Write the priority between tasks in the outstream os. */
 	virtual std::ostream &
 	  writeGraph(const std::string & name, std::ostream & os) const;
-
+	/*! \brief Returns the list of task separated by a |. */
+	virtual std::string getTaskList( void ) const;
 	/*! @} */
 
       public: /* --- COMMANDS --- */

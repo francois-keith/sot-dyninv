@@ -165,7 +165,11 @@ namespace dynamicgraph
 		   makeDirectGetter(*this,&secondOrderKinematics_,
 				    docDirectGetter("second order kinematic inversion","bool")));
 
-	ADD_COMMANDS_FOR_THE_STACK;
+        addCommand("getTaskList",
+                   new dynamicgraph::command::Getter< SolverKine, std::string>
+		   (*this, &stack_t::getTaskList,"get the task list"));
+
+        ADD_COMMANDS_FOR_THE_STACK;
       }
 
       /* --- STACK ----------------------------------------------------------- */

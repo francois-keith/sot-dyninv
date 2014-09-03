@@ -119,7 +119,11 @@ namespace dynamicgraph
 		   makeCommandVoid0(*this,&SolverOpSpace::debugOnce,
 				    docCommandVoid0("open trace-file for next iteration of the solver.")));
 
-	ADD_COMMANDS_FOR_THE_STACK;
+        addCommand("getTaskList",
+                   new dynamicgraph::command::Getter< SolverOpSpace, std::string>
+                    (*this, &stack_t::getTaskList,"get the task list"));
+
+        ADD_COMMANDS_FOR_THE_STACK;
       }
 
       /* --- STACK ----------------------------------------------------------- */

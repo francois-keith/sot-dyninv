@@ -18,6 +18,7 @@
 #define __sot_dyninv_StackTemplate_TCC__
 
 #include <dynamic-graph/pool.h>
+#include <dynamic-graph/command-getter.h>
 #include <sot/core/debug.hh>
 #include <sot/core/task-abstract.hh>
 
@@ -200,6 +201,16 @@ namespace dynamicgraph
 	}
     }
 
+    template< typename TaskGeneric >
+    std::string Stack<TaskGeneric>::
+    getTaskList() const
+    {
+      std::string s;
+      for ( StackConstIterator_t it=this->stack.begin();
+            this->stack.end()!=it;++it )
+        s = ((s=="")? "":s+"|") + (*it)->getName();
+      return s;
+    }
 
     /* --------------------------------------------------------------------- */
     /* --- COMMAND --------------------------------------------------------- */
